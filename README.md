@@ -5,4 +5,5 @@
 
 ##参考:
 * [Square Smoother Signatures]( http://corner.squareup.com/2012/07/smoother-signatures.html )
-* [Capture a Signature on iOS]( https://www.altamiracorp.com/blog/employee-posts/capture-a-signature-on-ios )
+* [Android 开源实现](https://github.com/gcacace/android-signaturepad)
+* [iOS 开源实现]( https://www.altamiracorp.com/blog/employee-posts/capture-a-signature-on-ios )
