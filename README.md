@@ -1,3 +1,9 @@
-签名SDK项目：
-	* 以Square签名平滑算法 Square Smoother Signatures( http://corner.squareup.com/2012/07/smoother-signatures.html )为基础，进行完成iOS, Android, PHP 版本的实现
-	* iOS已有开源实现 Capture a Signature on iOS( https://www.altamiracorp.com/blog/employee-posts/capture-a-signature-on-ios )，咱们直接使用
+#签名SDK项目：
+
+##架构图:
+![](https://github.com/qiandaibao/signature/raw/master/doc/%E7%AD%BE%E5%90%8DSDK.png)
+
+##参考:
+* [Square Smoother Signatures]( http://corner.squareup.com/2012/07/smoother-signatures.html )
+* [Android 开源实现](https://github.com/gcacace/android-signaturepad)
+* [iOS 开源实现]( https://www.altamiracorp.com/blog/employee-posts/capture-a-signature-on-ios )
