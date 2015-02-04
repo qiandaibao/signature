@@ -8,7 +8,7 @@ class Signature
      * @param $height
      * @return string base64图片
      */
-    public function redraw($path, $width, $height)
+    public function reproduce($path, $width, $height)
     {
         return "";
     }
