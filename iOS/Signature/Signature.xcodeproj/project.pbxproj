@@ -14,7 +14,7 @@
 		618BED8B1A8376ED006CB7DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618BED8A1A8376ED006CB7DE /* Images.xcassets */; };
 		618BED8E1A8376ED006CB7DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 618BED8C1A8376ED006CB7DE /* LaunchScreen.xib */; };
 		618BED9A1A8376ED006CB7DE /* SignatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 618BED991A8376ED006CB7DE /* SignatureTests.m */; };
-		61D9DDA41A8379A80063CB68 /* PPSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9DDA31A8379A80063CB68 /* PPSSignatureView.m */; };
+		61D9DDA71A838CF40063CB68 /* PPSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D9DDA61A838CF40063CB68 /* PPSSignatureView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +41,8 @@
 		618BED931A8376ED006CB7DE /* SignatureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignatureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		618BED981A8376ED006CB7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		618BED991A8376ED006CB7DE /* SignatureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignatureTests.m; sourceTree = "<group>"; };
-		61D9DDA21A8379A80063CB68 /* PPSSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSSignatureView.h; path = "../../../../../var/root/Downloads/PPSSignatureView-master/Source/PPSSignatureView.h"; sourceTree = "<group>"; };
-		61D9DDA31A8379A80063CB68 /* PPSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSSignatureView.m; path = "../../../../../var/root/Downloads/PPSSignatureView-master/Source/PPSSignatureView.m"; sourceTree = "<group>"; };
+		61D9DDA51A838CF40063CB68 /* PPSSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSignatureView.h; sourceTree = "<group>"; };
+		61D9DDA61A838CF40063CB68 /* PPSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSignatureView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +84,9 @@
 		618BED7C1A8376ED006CB7DE /* Signature */ = {
 			isa = PBXGroup;
 			children = (
+				61D9DDA51A838CF40063CB68 /* PPSSignatureView.h */,
+				61D9DDA61A838CF40063CB68 /* PPSSignatureView.m */,
 				618BED811A8376ED006CB7DE /* AppDelegate.h */,
-				61D9DDA21A8379A80063CB68 /* PPSSignatureView.h */,
-				61D9DDA31A8379A80063CB68 /* PPSSignatureView.m */,
 				618BED821A8376ED006CB7DE /* AppDelegate.m */,
 				618BED841A8376ED006CB7DE /* ViewController.h */,
 				618BED851A8376ED006CB7DE /* ViewController.m */,
@@ -225,7 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				618BED861A8376ED006CB7DE /* ViewController.m in Sources */,
-				61D9DDA41A8379A80063CB68 /* PPSSignatureView.m in Sources */,
+				61D9DDA71A838CF40063CB68 /* PPSSignatureView.m in Sources */,
 				618BED831A8376ED006CB7DE /* AppDelegate.m in Sources */,
 				618BED801A8376ED006CB7DE /* main.m in Sources */,
 			);
