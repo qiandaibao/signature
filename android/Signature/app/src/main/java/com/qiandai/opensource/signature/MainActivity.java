@@ -54,14 +54,14 @@ public class MainActivity extends Activity implements ColorPickerDialog.OnColorC
 
             @Override
             public void onStart(float x, float y, float timestamp) {
-                Log.e("onStart", "x:"+x+"  y:"+y+"  timestamp:"+timestamp);
+                Log.d("onStart", "x:"+x+"  y:"+y+"  timestamp:"+timestamp);
                 signList.getSignList().add((int)x);
                 signList.getSignList().add((int)y);
             }
 
             @Override
             public void onMove(float x, float y, float timestamp) {
-                Log.e("onMove", "x:"+x+"  y:"+y+"  timestamp:"+timestamp);
+                Log.d("onMove", "x:"+x+"  y:"+y+"  timestamp:"+timestamp);
                 System.out.println(timestamp);
                 signList.getSignList().add((int)x);
                 signList.getSignList().add((int)y);
@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements ColorPickerDialog.OnColorC
 
             @Override
             public void onUp() {
-                Log.e("onUp", "--------------------------");
+                Log.d("onUp", "--------------------------");
                 signList.getSignList().add(-1);
                 signList.getSignList().add(0);
             }
@@ -118,7 +118,7 @@ public class MainActivity extends Activity implements ColorPickerDialog.OnColorC
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
         if (!file.mkdirs()) {
-            Log.e("SignaturePad", "Directory not created");
+            Log.d("SignaturePad", "Directory not created");
         }
         return file;
     }
