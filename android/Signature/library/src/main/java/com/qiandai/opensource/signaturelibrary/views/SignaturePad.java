@@ -19,6 +19,8 @@ import com.qiandai.opensource.signaturelibrary.utils.ControlTimedPoints;
 import com.qiandai.opensource.signaturelibrary.utils.TimedPoint;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SignaturePad extends View {
@@ -41,7 +43,7 @@ public class SignaturePad extends View {
     private Path mPath = new Path();
     Bitmap mSignatureBitmap = null;
     Canvas mSignatureBitmapCanvas = null;
-
+    TypedArray typedArray;
     public interface OnSignedListener {
         public void onSigned();
 
@@ -51,20 +53,20 @@ public class SignaturePad extends View {
     public SignaturePad(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray a = context.getTheme().obtainStyledAttributes(
+        typedArray = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.SignaturePad,
                 0, 0);
 
         //Configurable parameters
-        try {
-            mMinWidth = a.getFloat(R.styleable.SignaturePad_minWidth, 3f);
-            mMaxWidth = a.getFloat(R.styleable.SignaturePad_maxWidth, 7f);
-            mVelocityFilterWeight = a.getFloat(R.styleable.SignaturePad_velocityFilterWeight, 0.9f);
-            mPaint.setColor(a.getColor(R.styleable.SignaturePad_penColor, Color.BLACK));
-        } finally {
-            a.recycle();
-        }
+//        try {
+            mMinWidth = typedArray.getFloat(R.styleable.SignaturePad_minWidth, 3f);
+            mMaxWidth = typedArray.getFloat(R.styleable.SignaturePad_maxWidth, 7f);
+            mVelocityFilterWeight = typedArray.getFloat(R.styleable.SignaturePad_velocityFilterWeight, 0.9f);
+            mPaint.setColor(typedArray.getColor(R.styleable.SignaturePad_penColor, Color.BLACK));
+//        } finally {
+//            typedArray.recycle();
+//        }
 
         //Fixed parameters
         mPaint.setAntiAlias(true);
@@ -78,7 +80,7 @@ public class SignaturePad extends View {
         clear();
     }
 
-    public void addPoint(TimedPoint newPoint) {
+    public void addPoint(TimedPoint newPoint,String eventState) {
         mPoints.add(newPoint);
         if (mPoints.size() > 2) {
             // To reduce the initial lag make it work with 3 mPoints
@@ -117,8 +119,28 @@ public class SignaturePad extends View {
             // so that we always have no more than 4 mPoints in mPoints array.
             mPoints.remove(0);
         }
+        //long timeInMillies=Calendar.getInstance().getTimeInMillis();
+        if(eventState.equals("down")){
+            listener.onStart(newPoint.x, newPoint.y,getTimeInMillies());
+        }else if(eventState.equals("move")){
+            listener.onMove(newPoint.x, newPoint.y,getTimeInMillies());
+        }else if(eventState.equals("up")){
+            listener.onUp();
+        }
     }
+    /**
+     * 生成时间戳
+     * @return 时间戳
+     */
+    public Float getTimeInMillies(){
+        Date date = new Date();
+        long time = date.getTime();
 
+        //mysq 时间戳只有10位 要做处理
+        String dateline = time + "";
+        Float timeFloat=Float.valueOf(dateline.substring(0, 10));
+        return timeFloat;
+    }
     private void addBezier(Bezier curve, float startWidth, float endWidth) {
         ensureSignatureBitmap();
         float originalWidth = mPaint.getStrokeWidth();
@@ -210,17 +232,17 @@ public class SignaturePad extends View {
                 mPath.moveTo(eventX, eventY);
                 mLastTouchX = eventX;
                 mLastTouchY = eventY;
-                addPoint(new TimedPoint(eventX, eventY));
+                addPoint(new TimedPoint(eventX, eventY),"down");
                 setIsEmpty(false);
 
             case MotionEvent.ACTION_MOVE:
                 resetDirtyRect(eventX, eventY);
-                addPoint(new TimedPoint(eventX, eventY));
+                addPoint(new TimedPoint(eventX, eventY),"move");
                 break;
 
             case MotionEvent.ACTION_UP:
                 resetDirtyRect(eventX, eventY);
-                addPoint(new TimedPoint(eventX, eventY));
+                addPoint(new TimedPoint(eventX, eventY),"up");
                 getParent().requestDisallowInterceptTouchEvent(true);
                 break;
 
@@ -335,5 +357,55 @@ public class SignaturePad extends View {
                     Bitmap.Config.ARGB_8888);
             mSignatureBitmapCanvas = new Canvas(mSignatureBitmap);
         }
+    }
+
+    public Paint getPaint() {
+        return mPaint;
+    }
+
+    public void setPaint(Paint mPaint) {
+        this.mPaint = mPaint;
+    }
+
+    public float getMaxWidth() {
+        return mMaxWidth;
+    }
+
+    public void setMaxWidth(float mMaxWidth) {
+        this.mMaxWidth = mMaxWidth;
+        mMinWidth = typedArray.getFloat(R.styleable.SignaturePad_minWidth, mMinWidth);
+    }
+
+    /*
+         * 按下拖动监听
+         */
+    private OnTouchEventListener listener;
+    public void setOnTouchEventListener(OnTouchEventListener listener) {
+        this.listener = listener;
+    }
+    /**
+     * 设置按下拖动抬起监听
+     * @author Administrator
+     *
+     */
+    public interface OnTouchEventListener{
+        /**
+         * 开始
+         * @param x
+         * @param y
+         * @param timestamp   时间戳
+         */
+        void onStart(float x,float y,float timestamp);
+        /**
+         * 移动
+         * @param x
+         * @param y
+         * @param timestamp    时间戳
+         */
+        void onMove(float x,float y,float timestamp);
+        /**
+         * 结束
+         */
+        void onUp();
     }
 }

@@ -31,7 +31,7 @@ public class FontSizeDialog extends AlertDialog {
 	public FontSizeDialog(Activity activity) {
 		super(activity);
 		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.FILL_PARENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT
 				);
 		
@@ -39,10 +39,10 @@ public class FontSizeDialog extends AlertDialog {
 		lin.setOrientation(LinearLayout.VERTICAL);
 		lin.setGravity(Gravity.CENTER_HORIZONTAL);
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-				200,ViewGroup.LayoutParams.FILL_PARENT);
+				200,ViewGroup.LayoutParams.WRAP_CONTENT);
 		textView=new TextView(activity);
 		textView.setLayoutParams(p);
-		textView.setTextColor(Color.YELLOW);
+		textView.setTextColor(Color.RED);
 		brightBar =new SeekBar(activity);
 		brightBar.setLayoutParams(p);
 		brightBar.setMax(10);
