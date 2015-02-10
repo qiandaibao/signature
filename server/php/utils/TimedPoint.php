@@ -38,6 +38,7 @@ class TimedPoint
      */
     function distanceTo($point)
     {
-        return sqrt(pow($point->x - $this->x, 2), pow($point->y - $this->y, 2));
+        return sqrt(pow($point->x - $this->x, 2) + pow($point->y - $this->y, 2));
+
     }
 }

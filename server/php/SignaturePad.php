@@ -27,8 +27,8 @@ class SignaturePad
     function __construct()
     {
         //Configurable parameters
-        $this->mMinWidth = 3.0;
-        $this->mMaxWidth = 7.0;
+        $this->mMinWidth = 3.0; //3.0
+        $this->mMaxWidth = 13.0; //7.0
         $this->mVelocityFilterWeight = 0.9;
 
         $this->mSignatureBitmap = imagecreatetruecolor(1000, 1000);
@@ -118,7 +118,6 @@ class SignaturePad
             $color = imagecolorallocate($this->mSignatureBitmap, 255, 0, 0);
             $strokeWidth = $startWidth + $ttt * $widthDelta;
 
-            echo "---->" . $x . "|" . $y;
             imagefilledellipse($this->mSignatureBitmap, $x, $y, $strokeWidth / 2.0, $strokeWidth / 2.0, $color);
         }
     }
