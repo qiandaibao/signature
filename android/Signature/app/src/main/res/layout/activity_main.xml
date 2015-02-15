@@ -32,7 +32,7 @@
             android:text="I agree the terms and conditions."
             android:textColor="@android:color/darker_gray" />
 
-        <com.qiandai.opensource.signaturelibrary.views.SignaturePad
+        <com.qiandai.opensource.signaturelibrary.views.QDSignaturePad
             android:id="@+id/signature_pad"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
