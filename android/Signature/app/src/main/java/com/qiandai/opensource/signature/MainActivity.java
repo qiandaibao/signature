@@ -13,25 +13,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.qiandai.opensource.signaturelibrary.utils.SignList;
+import com.qiandai.opensource.signaturelibrary.views.QDSignaturePad;
 import com.qiandai.opensource.signaturelibrary.views.SignaturePad;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class MainActivity extends Activity {
 
-    private SignaturePad mSignaturePad;
+    private QDSignaturePad qdSignaturePad;
     private Button mClearButton;
     private Button mSaveButton;
-
+    private SignList signList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSignaturePad = (SignaturePad) findViewById(R.id.signature_pad);
-        mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
+        qdSignaturePad = (QDSignaturePad) findViewById(R.id.signature_pad);
+        signList=qdSignaturePad.getSignList();
+        qdSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onSigned() {
                 mSaveButton.setEnabled(true);
@@ -51,16 +59,18 @@ public class MainActivity extends Activity {
         mClearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSignaturePad.clear();
+                qdSignaturePad.clear();
             }
         });
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
+                Bitmap signatureBitmap = qdSignaturePad.getSignatureBitmap();
                 if(addSignatureToGallery(signatureBitmap)) {
                     Toast.makeText(MainActivity.this, "Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
+                    signList.saveFinalSign();
+                    getData();
                 } else {
                     Toast.makeText(MainActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
                 }
@@ -68,6 +78,19 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * 获取数据
+     */
+    public void getData(){
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("coord", Arrays.toString(signList.getFinalSign()));
+            jsonObject.put("timestamp",Arrays.toString(signList.getTimeInMillies()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("getData"   ,"jsonObject"+jsonObject.toString() );
+    }
     public File getAlbumStorageDir(String albumName) {
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(
