@@ -1,7 +1,12 @@
-#签名SDK项目：
+##签名组件：
+签名组件是用户钱袋宝在收单和签合同时的屏幕签名
 
-##架构图:
-![](https://github.com/qiandaibao/signature/raw/master/doc/%E7%AD%BE%E5%90%8DSDK.png)
+##特性
+* 轨迹平滑
+* 粗细变化
+
+###结构:
+![](https://github.com/qiandaibao/signature/raw/master/doc/assets/Architecture.png)
 
 ##Quick start
 ###iOS:
