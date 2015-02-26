@@ -7,7 +7,7 @@
 ###iOS:
 TODO: iOS使用说明
 ###android:
-TODO: android使用说明
+TODO: [android使用说明](https://github.com/qiandaibao/signature/wiki/接口说明)
 ###php
 TODO: php使用说明
 
