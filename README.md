@@ -1,20 +1,14 @@
 ##签名组件：
-签名组件是用户钱袋宝在收单和签合同时的屏幕签名
+目前用于“商户收单”和“签合同”时，用户在手机屏幕进行手写签名
 
 ##特性
-* 轨迹平滑
-* 粗细变化
+* 贝塞尔平滑处理
+* 笔迹粗细变化
 
-###结构:
+###程序结构:
 ![](https://github.com/qiandaibao/signature/raw/master/doc/assets/Architecture.png)
 
 ##Quick start
-###iOS:
-TODO: iOS使用说明
-###android:
-TODO: android使用说明
-###php
-TODO: php使用说明
 
 ##参考:
 * [Square Smoother Signatures]( http://corner.squareup.com/2012/07/smoother-signatures.html )
